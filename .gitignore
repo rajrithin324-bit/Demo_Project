@@ -1,0 +1,33 @@
+# =========================
+# Python
+# =========================
+backend/ADPB/
+**/__pycache__/
+*.pyc
+
+# Environment files
+**/.env
+
+# =========================
+# React / Vite
+# =========================
+frontend/node_modules/
+frontend/dist/
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# VS Code
+.vscode/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Ignore uploaded files
+backend/app/uploads/*
+!backend/app/uploads/.gitkeep
+
+/frontend/node_modules/*
