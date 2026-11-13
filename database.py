@@ -1,11 +1,28 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from dotenv import load_dotenv
 
-db_url = "postgresql://postgres:rithin@localhost:5432/rithindb"
+load_dotenv()
 
-engine = create_engine(db_url)
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL is not configured")
+
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,
+    pool_size=5,
+    max_overflow=10,
+    echo=False
+)
+
+SessionLocal = sessionmaker(
+    bind=engine,
+    autocommit=False,
+    autoflush=False
+)
 
 def get_db():
     db = SessionLocal()
